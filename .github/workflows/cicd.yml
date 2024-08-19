@@ -35,10 +35,7 @@ jobs:
         uses: webfactory/ssh-agent@v0.5.3
         with:
           ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
-          
-      - name: Add passphrase to SSH key
-        run: echo "${{ secrets.SSH_PARAPHARASE }}" | ssh-add -k
-        
+
       - name: Deploy to Linode
         run: |
           ssh -o StrictHostKeyChecking=no ${{ secrets.USER_NAME }}@${{ secrets.HOSTNAME }} << 'EOF'
